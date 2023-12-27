@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="container-fluid" style="margin-top: 200px; margin-bottom: 200px;">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h1>Agregar nueva categoría</h1>
+                    <form method="POST">
+                        {% csrf_token %}   
+                        {{ form.as_p }}
+                        <input type="submit" class="btn btn-success" value="Agregar">
+                    </form>
+                    <div class="mt-3">
+                        <a id="boton_post"
+                        href="{% url 'apps.posts:categoria_list' %}"
+                        class="btn btn-primary">Listar todas las categorías</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

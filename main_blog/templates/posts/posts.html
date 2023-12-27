@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% load colaborador_tags %}
+
+{% block contenido %}
+<center>
+<title>{% block title %} posts {% endblock title %}</title>
+
+
+<style>
+    /* Estilos CSS para el botón de Crear Nuevo Post */
+    .crear-post {
+        background-color: #ffffff; /* Color de fondo */
+        padding: 10px 20px; /* Espaciado interno */
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+        margin-bottom: 20px; /* Espacio hacia abajo */
+    }
+
+    /* Estilos CSS para la mejora visual con Flexbox */
+    .container-fluid-posts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center; /* Centra horizontalmente */
+        margin-bottom: 20px; /* Espacio hacia abajo */
+        text-align: center; /* Alineación de texto centrada */
+    }
+
+    .post-preview {
+        flex: 0 0 calc(33.33% - 20px); /* Ajustar el tamaño del post */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .post-preview img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px; /* Espacio entre la imagen y el botón */
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 10px; /* Espacio hacia abajo */
+        background-color: #ccc; /* Color de fondo */
+        color: #333; /* Color del texto */
+    }
+
+    .btn-primary {
+        background-color: #ccc;
+        border-color: #ccc;
+        color: #333;
+        margin-right: 5px; /* Espacio horizontal entre botones */
+    }
+
+    .btn-primary:hover {
+        background-color: #999;
+        border-color: #999;
+        color: #fff;
+    }
+</style>
+
+{% if user.is_superuser or request.user|has_group:"Colaborador" %}
+    <div class="crear-post">
+        <a href="{% url 'apps.posts:crear_post' %}" class="btn btn-primary">Crear Nuevo Post</a>
+    </div>
+{% endif %}
+
+<h2>Ordenar posts</h2>
+<br>
+<ul class="nav justify-content-center"> <!-- Añadir clase de Bootstrap para centrar los botones -->
+    <li class="nav-item">
+        <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=reciente" class="btn btn-primary mb-2">Más reciente</a>
+    </li>
+    <li class="nav-item">
+        <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=antiguo" class="btn btn-primary mb-2">Más antiguo</a>
+    </li>
+    <li class="nav-item">
+        <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=alfabetico" class="btn btn-primary mb-2">Orden alfabético</a>
+    </li>
+</ul>
+
+<div class="container-fluid-posts">
+    {% for i in posts %}
+        <div class="post-preview">
+            <h2>{{ i.titulo }}</h2>
+            <p>{{ i.categoria }}</p>
+            <p>{{ i.texto }}</p>
+            <img src="{{ i.imagen.url }}" alt="" width="300" height="200">
+            <br><br>
+            <a id="boton_post" href="{% url 'apps.posts:post_individual' i.id %}" class="btn btn-primary">Ver este post</a>
+        </div>
+    {% empty %}
+        <h1>No hay registros</h1>
+    {% endfor %}
+</div>
+</center>
+{% endblock contenido %}

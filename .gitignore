@@ -1,0 +1,8 @@
+# Ignorar el directorio del entorno
+/entorno/
+
+# Ignorar un archivo específico
+# archivo_especifico.txt
+
+# Ignorar todos los archivos .log
+#*.log

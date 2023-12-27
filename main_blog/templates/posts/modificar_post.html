@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<title>{% block title %} posts {% endblock title %}</title>
+<center>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <a id="boton_post"
+                        href="{% url 'apps.posts:crear_categoria' %}?next={% url 'apps.posts:post_update' pk=object.id %}"
+                        class="btn btn-primary mb-3">Crear nueva categoría</a>
+                        <h1>Modificar post</h1>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}   
+                            {{ form.as_p }}
+                            <input type="submit" class="btn btn-success" value="Guardar cambios">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>
+{% endblock contenido %}

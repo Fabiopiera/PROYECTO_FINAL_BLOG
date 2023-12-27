@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static %}
+{% load colaborador_tags %}
+
+{% block title %} TeknoCom {% endblock title %}</title>
+
+
+
+{% block contenido %}
+<!DOCTYPE html>
+<html lang="es-ar">
+
+
+<!-- Begin Site Title
+================================================== -->
+<div class="container">
+	<div class="mainheading">
+		<h2 class="sitetitle">Bienvenidos</h2>
+		<p class="lead">
+			 Aquí encontraras las mejores publicaciones sobre tecnología
+
+		</p>
+	</div>
+<!-- End Site Title
+================================================== -->
+
+
+
+<!-- revolution slider -->
+<div class="banner-slider">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-7">
+				<div id="slider_main" class="carousel slide" data-ride="carousel">
+					<!-- The slideshow -->
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="{% static 'images/slider_01.jpg' %}" alt="#" style="width: 500px; height: 350px;"/>
+						</div>
+						<div class="carousel-item">
+							<a href="{% url 'apps.posts:post_individual' 2 %}"><img src="{% static 'images/slider_02.jpg' %}" alt="#"style="width: 500px; height: 350px;" /></a>
+						</div>
+						<div class="carousel-item">
+							<img src="{% static 'images/slider_03.jpg' %}" alt="#" style="width: 500px; height: 350px;"/>
+						</div>
+						<div class="carousel-item">
+							<a href="{% url 'apps.posts:post_individual' 3 %}"><img src="{% static 'images/slider_04.jpg' %}" alt="#" style="width: 500px; height: 350px;" /></a>
+						</div>
+					</div>
+					<!-- Left and right controls -->
+					<a class="carousel-control-prev" href="#slider_main" data-slide="prev">
+					<i class="fa fa-angle-left" aria-hidden="true"></i>
+					</a>
+					<a class="carousel-control-next" href="#slider_main" data-slide="next">
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="full slider_cont_section">
+					<h4>Posts</h4>
+					<h3><span class="orange_color">Destacados</span></h3>
+					<p>Esta es una selección de articulos, que te pueden interesar, como para ir conociendo nuestros contenidos.</p>
+					<p>Tambien puedes consultar todos los posts en nuestra seccion ¨POSTS¨ en la barra superior o en el siguiente enlace.</p>
+					<p>Y si te gusta registrate y podras comentar sobre las publicaciones.</p>
+					<div class="button_section">
+					<a href="{% url 'apps.posts:posts' %}">Todos los posts</a> <br><br>
+					<a href="{% url 'apps.usuario:registrar' %}">Registrarse</a>
+					<br>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	 <!-- end revolution slider -->   
+	 <br><br><br><br>
+
+	<!-- Begin Featured
+	================================================== -->
+	
+	<section class="featured-posts">
+	<div class="section-title">
+		<h2><span>Categorías destacadas</span></h2>
+	</div>
+	<div class="card-columns listfeaturedtag">
+
+		<!-- begin post -->
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="http://127.0.0.1:8000/categoria/1/posts/">
+						<div class="thumbnail" style="background-image:url({% static "images/demopic/1.jpg" %});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a href="http://127.0.0.1:8000/categoria/1/posts/">Inteligencia artificial</a></h2>
+						<h4 class="card-text">La Inteligencia Artificial son sistemas que imitan la inteligencia humana para realizar tareas diversas; aplicaciones en varias industrias </h4>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end post -->
+
+		<!-- begin post -->
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="http://127.0.0.1:8000/categoria/3/posts/">
+						<div class="thumbnail" style="background-image:url({% static "images/demopic/2.jpg" %});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a href="http://127.0.0.1:8000/categoria/3/posts/">Ciberseguridad</a></h2>
+						<h4 class="card-text">Protección de equipos, redes, aplicaciones de software, sistemas críticos y datos de posibles amenazas digitales.</h4>
+						<div class="metafooter">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end post -->
+
+		<!-- begin post -->
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="http://127.0.0.1:8000/categoria/2/posts/">
+						<div class="thumbnail" style="background-image:url({% static "images/demopic/3.jpg" %});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a href="http://127.0.0.1:8000/categoria/2/posts/">Herramientas y recursos para desarrolladores</a></h2>
+						<h4 class="card-text"> Entornos de programación y recursos como documentación en línea, foros, y plataformas colaborativas como GitHub para proyectos compartidos.</h4>
+						<div class="metafooter">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end post -->
+
+		<!-- begin post -->
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="http://127.0.0.1:8000/categoria/13/posts/">
+						<div class="thumbnail" style="background-image:url({% static "images/demopic/4.jpg" %});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a href="http://127.0.0.1:8000/categoria/13/posts/">Videojuegos</a></h2>
+						<h4 class="card-text"> Avances en hardware, software y diseño que mejoran la experiencia del jugador, incluyendo gráficos, sonido, controles y funcionalidades innovadoras..</h4>
+						<div class="metafooter">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end post -->
+
+	</div>
+	<div class="section-title">
+		<a class="nav-link" href="{% url 'apps.posts:categoria_list' %}">Ver mas categorias</a>
+	</div>
+	</section>
+	<!-- End Featured
+	================================================== -->
+
+	
+
+
+
+
+
+
+
+{% endblock contenido %}

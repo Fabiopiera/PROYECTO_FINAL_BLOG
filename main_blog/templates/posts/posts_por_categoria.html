@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+    <style>
+        .categorias {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .post-item {
+            width: 300px;
+            margin-bottom: 40px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden; /* Para mantener el contenido dentro del contenedor */
+        }
+
+        .posts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .post-content {
+            margin-bottom: 20px;
+        }
+
+        .post-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .ver-post-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 30px; /* Ajusta el espacio entre el botón y el contenido */
+        }
+
+        .ver-post-btn:hover {
+            background-color: #dcdcdc;
+        }
+    </style>
+
+    <div class="container" style="margin: 100px auto;">
+        <h1 style="text-align: center;">Posts por Categoría</h1>
+
+        <!-- Enlaces a las categorías -->
+        <div class="categorias">
+            {% for categoria in categorias %}
+                <a href="{% url 'posts_por_categoria' categoria.id %}" style="margin-right: 10px;">{{ categoria.nombre }}</a>
+            {% endfor %}
+        </div>
+
+        <!-- Posts de la categoría seleccionada -->
+        <div class="posts">
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="post-item">
+                        <div class="post-content">
+                            <h3>{{ post.titulo }}</h3>
+                            <p>{{ post.texto }}</p>
+
+                            <img src="{{ post.imagen.url }}" alt="Imagen del post">
+                            <!-- Otros campos del post que quieras mostrar -->
+                        </div>
+
+                        <!-- Botón para ver el post individualmente -->
+                        <a href="{% url 'apps.posts:post_individual' post.id %}" class="ver-post-btn">Ver este post</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No hay posts en esta categoría.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock contenido %}

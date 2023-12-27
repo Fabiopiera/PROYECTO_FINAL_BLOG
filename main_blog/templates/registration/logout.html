@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+<title>{% block title %} Logout {% endblock title %}</title>
+
+{% block contenido %}
+<center>
+    <div class="container" style="margin-top: 370px;">
+        <div class="messages">
+            {% for message in messages %}
+            <table{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</table>
+            {% endfor %}
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <input type="submit" value="Cerrar sesión">
+            </form>
+        </div>
+    </div>
+</center>
+{% endblock contenido %}

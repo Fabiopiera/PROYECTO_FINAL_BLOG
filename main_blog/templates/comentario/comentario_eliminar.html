@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<title>{% block title %} Eliminar posts {% endblock title %}</title>
+<center>
+    
+    <br>
+    <div class= "container-fluid" style= "margin: 200px;">
+    <h1>Eliminar post</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}   
+        {{ form.as_p }}
+        <h4>Estas seguro que deseas eliminar este post?</h4>
+        <input type="submit" value="Si, eliminar">
+        <a style= "color: black;" href="{% url 'apps.posts:posts' %}">No, cancelar</a>
+    </form>
+</div>
+</center>
+{% endblock contenido %}

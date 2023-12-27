@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+    <style>
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-img-top {
+            flex: 1;
+            object-fit: cover;
+            max-height: 200px;
+        }
+    </style>
+
+    <div class="container" style="margin-top: 20px;">
+        <div class="text-center">
+            <h1>Lista de Usuarios</h1>
+        </div>
+        <div class="row">
+            {% for usuario in usuarios %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="{% if usuario.imagen %}{{ usuario.imagen.url }}{% else %}{% static 'usuario/user-default.png' %}{% endif %}" alt="Imagen de Usuario">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ usuario.username }}</h5>
+                            <a href="{% url 'apps.usuario:eliminar_usuario' pk=usuario.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col">
+                    <p>No hay usuarios</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock contenido %}

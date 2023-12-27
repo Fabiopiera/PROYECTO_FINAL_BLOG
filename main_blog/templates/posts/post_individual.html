@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% load colaborador_tags %}
+
+{% block contenido %}
+<style>
+    .post-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+        max-width: 1200px; /* Modifica el ancho máximo según tus preferencias */
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .post-card {
+        max-width: 500px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+    }
+
+    .post-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .post-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .post-actions a {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .post-actions .btn-update {
+        background-color: #17a2b8;
+        color: #fff;
+    }
+
+    .post-actions .btn-delete {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .btn-update:hover,
+    .btn-delete:hover {
+        filter: brightness(90%);
+    }
+</style>
+
+<div class="post-container">
+    <div class="post-card">
+        <h5>{{ posts.titulo }}</h5>
+        <h6>{{ posts.subtitulo }}</h6>
+        <p>{{ posts.texto }}</p>
+        {% if posts.imagen %}
+            <img src="{{ posts.imagen.url }}" alt="Imagen del post">
+        {% else %}
+            <p>No hay imagen disponible</p>
+        {% endif %}
+        <p>Categoría: {{ posts.categoria }}</p>
+        {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+            <div class="post-actions">
+                
+                <a href="{% url 'apps.posts:post_update' pk=posts.id %}" class="btn btn-update">Modificar post</a>
+                <a href="{% url 'apps.posts:post_delete' pk=posts.id %}" class="btn btn-delete">Eliminar post</a>
+            </div>
+        {% endif %}
+    </div>
+
+    {% include 'comentario/crear_comentario.html' %}
+</div>
+{% endblock %}

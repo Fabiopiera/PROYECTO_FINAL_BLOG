@@ -24,10 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#s(vr3t+7s^wi@*&#tbo+ltz%ob!h6@ym#vkh4y%5+7$&g@jon'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
-DEBUG = False
-
-ALLOWED_HOSTS = ['teknocom.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 
@@ -53,8 +52,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
 ]
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
@@ -149,12 +146,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATICFILES_DIRS = (os.path.join(os.path.dirname(BASE_DIR),'static'),)
-STATICFILES_DIRS = [BASE_DIR / 'static',]
-STATIC_ROOT = 'home/teknocom/PROYECTO_FINAL_BLOG/main_blog/static'
+STATICFILES_DIRS = (os.path.join(os.path.dirname(BASE_DIR),'static'),)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = 'home/teknocom/PROYECTO_FINAL_BLOG/main_blog/main_blog/media/media'
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -164,7 +160,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # MEDIA_URL = 'media/'
 # MEDIA_ROOT = (os.path.join(os.path.dirname(BASE_DIR),'media'),)  #linea agregada
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
